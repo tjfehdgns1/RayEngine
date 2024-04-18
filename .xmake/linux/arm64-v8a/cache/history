@@ -1,0 +1,5 @@
+{
+    cmdlines = {
+        "xmake lua /data/data/com.termux/files/usr/share/xmake/actions/build/cleaner.lua"
+    }
+}

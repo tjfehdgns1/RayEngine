@@ -1,6 +1,8 @@
-#include "lauxlib.h"
-#include "lua.h"
-#include "lualib.h"
+#include <stdio.h>
+
+#include "include/luajit/lauxlib.h"
+#include "include/luajit/lua.h"
+#include "include/luajit/lualib.h"
 #include "raylib.h"
 
 int main(void) {
@@ -12,20 +14,16 @@ int main(void) {
 
   lua_State *L = luaL_newstate();
   luaL_openlibs(L);
-
-  luaL_dofile(L, "game.lua");
+  luaL_dofile(L, "init.lua");
 
   while (!WindowShouldClose()) {
     BeginDrawing();
 
     ClearBackground(RAYWHITE);
-    lua_getglobal(L, "update");
-    lua_pushnumber(L, GetFrameTime());
-    lua_call(L, 1, 0);
-    DrawText("Simple text", screenWidth / 2, screenHeight / 2, 64, BLACK);
 
     EndDrawing();
   }
+
   lua_close(L);
   CloseWindow();
   return 0;
